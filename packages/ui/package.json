@@ -1,0 +1,23 @@
+{
+  "name": "ui",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "license": "MIT",
+  "scripts": {
+    "build": "rollup -c rollup.config.js",
+    "typings": "tsc -v && tsc -b -v",
+    "prepack": "rimraf dist && yarn typings && yarn build"
+  },
+  "devDependencies": {
+    "@vanilla-extract/css": "^1.11.0",
+    "@vanilla-extract/rollup-plugin": "^1.2.1",
+    "esbuild": "^0.17.18",
+    "rimraf": "^5.0.0",
+    "rollup": "^3.21.1",
+    "rollup-plugin-esbuild": "^5.0.0",
+    "rollup-plugin-visualizer": "^5.9.0",
+    "typescript": "^5.0.4"
+  }
+}
