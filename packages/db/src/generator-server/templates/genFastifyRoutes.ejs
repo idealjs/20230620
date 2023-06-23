@@ -1,0 +1,31 @@
+import type { Prisma } from "@prisma/client";
+import { FastifyPluginAsync } from "fastify";
+import fp from "fastify-plugin";
+
+import {
+  <%= name %>CreateArgsSchema,
+  <%= name %>CreateManyArgsSchema,
+  <%= name %>DeleteArgsSchema,
+  <%= name %>FindManyArgsSchema,
+  <%= name %>UpdateArgsSchema,
+  <%= name %>UpdateManyArgsSchema,
+  <%= name %>UpsertArgsSchema,
+} from "../zod";
+
+const routes: FastifyPluginAsync = async (fastify) => {
+  fastify.get(
+    "/<%= name.toLowerCase() %>/findMany",
+    {
+      schema: {
+        querystring: <%= name %>FindManyArgsSchema,
+      },
+    },
+    async (req) => {
+      return await fastify.prisma.<%= name.toLowerCase() %>.findMany(
+        req.query as Prisma.<%= name %>FindManyArgs
+      );
+    }
+  );
+};
+
+export default fp(routes);

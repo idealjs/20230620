@@ -1,0 +1,22 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+generator zod {
+  provider = "zod-prisma-types"
+  output   = "../../../apps/server/src/generated/zod"
+}
+
+generator node {
+  provider = "ts-node ./src/generator-server/bin.ts"
+  output   = "../../../apps/server/src/generated"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Hello {
+  id String @id @unique
+}
