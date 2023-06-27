@@ -20,3 +20,21 @@ datasource db {
 model Hello {
   id String @id @unique
 }
+
+model User{
+  id Int @id @default(autoincrement())
+  user_name String
+  user_password String
+  create_time DateTime
+  todolists ToDoList[]
+}
+
+model ToDoList{
+  //yaid Int @id @default(autoincrement())
+  user User @relation(fields: [user_id], references: [id])
+  user_id Int @unique
+  name String
+  description String?
+  create_time DateTime
+  update_time DateTime
+}
