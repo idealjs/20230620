@@ -1,5 +1,5 @@
 {
-  "name": "@idealjs/ponder-db",
+  "name": "db",
   "version": "0.1.0",
   "type": "module",
   "private": true,
