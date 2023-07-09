@@ -11,11 +11,11 @@ export default function Home() {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [newTodo, setNewTodo] = useState('');
 
-  useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/todos')
-      .then(response => response.json())
-      .then(data => setTodos(data));
-  }, []);
+  // useEffect(() => {
+  //   fetch('https://jsonplaceholder.typicode.com/todos')
+  //     .then(response => response.json())
+  //     .then(data => setTodos(data));
+  // }, []);
 
   const handleNewTodoChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setNewTodo(event.target.value);
@@ -102,12 +102,12 @@ export default function Home() {
   const incompletedTodos = todos.filter(todo => !todo.completed);
 
   return (
-    <div className="p-4">
-      <h1 className="text-3xl font-bold mb-4">Todo列表</h1>
+    <div className="p-4 bg-gray-900 text-white min-h-screen">
+      <h1 className="text-3xl font-bold mb-4 text-blue-500">Todo列表</h1>
       <div className="flex mb-4">
         <form className="flex" onSubmit={handleNewTodoSubmit}>
           <input
-            className="input input-bordered input-primary mr-2 w-64"
+            className="input input-bordered input-primary mr-2 w-128"
             type="text"
             value={newTodo}
             onChange={handleNewTodoChange}
@@ -120,12 +120,12 @@ export default function Home() {
       </div>
       <div className="flex">
         <div className="w-1/2 pr-2">
-          <h2 className="text-xl font-bold">已完成</h2>
+          <h2 className="text-xl font-bold text-green-500">已完成</h2>
           <ul>
             {completedTodos.map(todo => (
               <li
                 key={todo.id}
-                className="flex items-center mb-2 p-4 rounded bg-green-900 transition-colors duration-300"
+                className="flex items-center mb-2 p-4 rounded bg-green-900 transition-colors duration-300 hover:bg-green-800"
                 draggable
                 onDragStart={e => handleDragStart(e, todo)}
                 onDragOver={handleDragOver}
@@ -139,7 +139,7 @@ export default function Home() {
                 >
                   {todo.completed ? (
                     <svg
-                      className="w-6 h-6"
+                      className="w-6 h-6 text-green-200"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -153,7 +153,7 @@ export default function Home() {
                     </svg>
                   ) : (
                     <svg
-                      className="w-6 h-6"
+                      className="w-6 h-6 text-white"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -167,13 +167,13 @@ export default function Home() {
                     </svg>
                   )}
                 </button>
-                <span className="text-xl line-through">{todo.title}</span>
+                <span className="text-xl line-through text-white">{todo.title}</span>
                 <button
                   className="btn btn-error ml-auto"
                   onClick={() => handleTodoDelete(todo)}
                 >
                   <svg
-                    className="w-5 h-5"
+                    className="w-5 h-5 text-white"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -191,12 +191,12 @@ export default function Home() {
           </ul>
         </div>
         <div className="w-1/2 pl-2">
-          <h2 className="text-xl font-bold">未完成</h2>
+          <h2 className="text-xl font-bold text-red-500">未完成</h2>
           <ul>
             {incompletedTodos.map(todo => (
               <li
                 key={todo.id}
-                className="flex items-center mb-2 p-4 rounded bg-red-900 transition-colors duration-300"
+                className="flex items-center mb-2 p-4 rounded bg-red-900 transition-colors duration-300 hover:bg-red-800"
                 draggable
                 onDragStart={e => handleDragStart(e, todo)}
                 onDragOver={handleDragOver}
@@ -210,7 +210,7 @@ export default function Home() {
                 >
                   {todo.completed ? (
                     <svg
-                      className="w-6 h-6"
+                      className="w-6 h-6 text-red-200"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -224,7 +224,7 @@ export default function Home() {
                     </svg>
                   ) : (
                     <svg
-                      className="w-6 h-6"
+                      className="w-6 h-6 text-white"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -238,13 +238,13 @@ export default function Home() {
                     </svg>
                   )}
                 </button>
-                <span className="text-xl font-bold underline">{todo.title}</span>
+                <span className="text-xl font-bold underline text-white">{todo.title}</span>
                 <button
                   className="btn btn-error ml-auto"
                   onClick={() => handleTodoDelete(todo)}
                 >
                   <svg
-                    className="w-5 h-5"
+                    className="w-5 h-5 text-white"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
